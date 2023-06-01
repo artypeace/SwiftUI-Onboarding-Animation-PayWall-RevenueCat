@@ -2,21 +2,31 @@
 //  ContentView.swift
 //  SwiftUI-Onboarding-Animation-PayWall-RevenueCat
 //
-//  Created by AV on 6/1/23.
+//  Created by Arty Peace on 6/1/23.
 //
 
 import SwiftUI
+import ConfettiSwiftUI
+
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            NavigationView {
+                VStack {
+                    
+                    NavigationLink(destination: OnboardingContentView()) {
+                        Text("Open Onboarding")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                    .padding()
+                }
+            }
         }
-        .padding()
-    }
+        
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -24,3 +34,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
