@@ -507,4 +507,46 @@ extension PurchasesDelegateHandler: PurchasesDelegate {
     }
 }
 ```
+Add RenevueCat purchases initialization in YourApp struct
+```swift
+import SwiftUI
+import RevenueCat
 
+@main
+struct SwiftUI_Onboarding_Animation_PayWall_RevenueCatApp: App {
+    init() {
+           Purchases.logLevel = .debug
+           Purchases.configure(with: Configuration.Builder(withAPIKey: Constants.apiKey).with(usesStoreKit2IfAvailable: true).build())
+           Purchases.shared.delegate = PurchasesDelegateHandler.shared
+       }
+  var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
+```
+⚠️ If your app based on Storyboard, add it to AppDelegate:
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Purchases.logLevel = .debug
+        Purchases.configure(with: Configuration.Builder(withAPIKey: Constants.apiKey).with(usesStoreKit2IfAvailable: true).build())
+        Purchases.shared.delegate = self
+        return true
+    }
+```
+And add extension to AppDelegate instead of PurchasesDelegateHandler file PayWall folder
+```swift
+extension AppDelegate: PurchasesDelegate {
+    func purchases(_ purchases: Purchases, receivedUpdated customerInfo: CustomerInfo) {
+        print("Modified")
+    }
+}
+```
+If you have any suggestions or improvements of any kind let me know. Peace.
+
+## ✍️ Author
+
+Arty Peace
+
+- [Jump Up](#-overview)
